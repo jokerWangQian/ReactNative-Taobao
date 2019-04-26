@@ -28,6 +28,7 @@ import {
     Platform
 } from 'react-native';
 
+//定时器用到的5张图
 var a = "https://gw.alicdn.com/imgextra/i4/122/O1CN01aU2fhg1ClupzwwD4a_!!122-0-lubanu.jpg";
 var b = "https://aecpm.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg";
 var c = "https://img.alicdn.com/imgextra/i1/96/O1CN01uflo8X1Ca0XdMGxmF_!!96-0-luban.jpg"
@@ -35,6 +36,7 @@ var d = "https://gw.alicdn.com/imgextra/i2/73/O1CN01F2deNR1CPTQl2O2yV_!!73-0-lub
 var e = "https://gw.alicdn.com/imgextra/i3/160/O1CN019KaaGY1D3JtDIRJIO_!!160-0-lubanu.jpg"
 var f = 0;
 
+//获取屏幕的宽度和高度
 var screenWidth = Dimensions
     .get('window')
     .width;
@@ -43,6 +45,7 @@ var screenHeight = Dimensions
     .height;
 
 class HomePage extends Component {
+    //顶部导航条
     static navigationOptions = ({navigation}) => {
         return {title: '首页', headerTitle: (<TextInput
             style={{
@@ -78,7 +81,7 @@ class HomePage extends Component {
                 </TouchableOpacity>
             )};
     };
-
+    //初始化
     constructor(props) {
         super(props);
 
@@ -91,6 +94,7 @@ class HomePage extends Component {
             refreshing: false
         };
 
+        //定时器
         setInterval(() => {
             f++;
             var imageUrl = '';
@@ -250,6 +254,7 @@ class HomePage extends Component {
         alert(s);
     }
 
+    //网络请求数据
     fetchData() {
         fetch("https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesE" +
                 "xample.json").then((response) => response.json()).then((responseData) => {
@@ -260,6 +265,7 @@ class HomePage extends Component {
 
 AppRegistry.registerComponent('HomePage', () => HomePage);
 
+//样式
 const style = StyleSheet.create({
     container: {
         flex: 1,
@@ -335,6 +341,7 @@ const style = StyleSheet.create({
     }
 })
 
+//淘宝头条组件
 class NoticeItem extends Component {
     constructor(props) {
         super(props);
@@ -384,6 +391,7 @@ class NoticeItem extends Component {
     }
 }
 
+//首页导航路由
 const HomeStack = createStackNavigator({
     Home: HomePage,
     JuHuaSuan: JuHuaSuan
@@ -401,6 +409,7 @@ const HomeStack = createStackNavigator({
     }
 });
 
+//底部导航路由
 export default createAppContainer(createBottomTabNavigator({
     首页: HomeStack,
     ShoppingCart: ShappingCart,
